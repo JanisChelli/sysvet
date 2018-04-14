@@ -1,3 +1,25 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+sysvet_produto:
+    resource: "@SysvetBundle/Controller/ProdutoController.php"
+    type:     annotation
+
+sysvet_atendimento:
+    resource: "@SysvetBundle/Controller/AtendimentoController.php"
+    type:     annotation
+
+sysvet_usuario:
+    resource: "@SysvetBundle/Controller/UsuarioController.php"
+    type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+sysvet:
+    resource: "@SysvetBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"
+
+#app:
+#    resource: '@AppBundle/Controller/'
+#    type: annotation

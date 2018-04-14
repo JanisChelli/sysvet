@@ -2,12 +2,76 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Clinica Veterinaria{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src="/js/jquery/jquery.js" type="text/javascript"></script>
+        <script src="/js/bootstrap.bundle.js" type="text/javascript"></script>
+        <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/simple-sidebar.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        {% block body %}{% endblock %}
+         <div id="wrapper" class="toggled">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        SysVet
+                    </a>
+                </li>
+                <li>
+                    <a href="/">Inicio</a>
+                </li>
+                 {% if is_granted("ROLE_USER") %}
+                <li>
+                    <a href="{{ path("atendimento_index") }}">Atendimentos</a>
+                </li>
+                {% endif %}
+            
+                {% if is_granted("ROLE_ADMIN") %}
+                <li>
+                    <a href="{{ path("usuario_index") }}">Usuários</a>
+                </li>
+                {% endif %}
+                {% if is_granted("ROLE_ADMIN") %}
+                <li>
+                    <a href="{{ path("produto_index") }}">Produtos</a>
+                </li>
+                {% endif %}
+                 <li>
+                    <a href="{{ path("cliente_index") }}">Clientes</a>
+                </li>
+                <li>
+                    <a href="{{ path("servico_index") }}">Serviços</a>
+                </li>
+               
+                <li>
+                    <a href="{{ path("agendamento_index") }}">Agendamentos</a>
+                </li>
+                <li>
+                    <a href="#">Relatórios</a>
+                </li>
+                {% if app.user != null %}
+                <li>
+                  <a href="{{ logout_url()}}">{{ app.user.nome }} (Logout)</a>
+                  
+                </li>
+                {% endif %}
+               
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            {% block body %}{% endblock %}
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+        
         {% block javascripts %}{% endblock %}
     </body>
 </html>

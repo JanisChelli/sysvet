@@ -1,0 +1,37 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div class="alert alert-danger">Usuario ou senha incorretos</div>
+{% endif %}
+
+<div class="col-md4 offset-3">
+<div class="login-panel card">
+    <div class="card-header">
+        <h3 class="card-title">Entrar</h3>
+    </div>
+    <div class="card-body">
+       <form action="{{ path("fos_user_security_check") }}" method="post">
+           
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+            <fieldset>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Usuario" id="username" name="_username" type="text" value="{{ last_username }}" required="required" autocomplete="username" autofocus="">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Senha" id="password" name="_password" required="required" name="password" type="password" value="">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="remember_me" name="_remember_me" value="on" type="checkbox">Lembrar
+                    </label>
+                </div>
+                
+                <input class="btn btn-sm btn-success" id="submit" name="submit" type="submit" value="login"></input>
+            </fieldset>
+        </form>
+                <a href="resetting/request">Esqueceu a senha</a>
+    </div>
+</div>
+                

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Editar Atendimento</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Editar" class="btn btn-primary"/>
+    {{ form_end(edit_form) }}
+
+    
+            <a href="{{ path('atendimento_index') }}" class="btn btn-dark">Voltar</a>
+        
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+     
+{% endblock %}

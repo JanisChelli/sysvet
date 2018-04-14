@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cliente</h1>
+
+    <a href="{{ path('cliente_index') }}" class=""><< Voltar para a listagem</a>
+    
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cliente.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ cliente.nome }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ cliente.email }}</td>
+            </tr>
+            <tr>
+                <th>Telefone</th>
+                <td>{{ cliente.telefone }}</td>
+            </tr>
+            <tr>
+                <th>Documento</th>
+                <td>{{ cliente.documento }}</td>
+            </tr>
+            <tr>
+                <th>Data de cadastro</th>
+                <td>{% if cliente.dataCadastro %}{{ cliente.dataCadastro|date('d/m/Y') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+  
+                
+        
+            <a href="{{ path('cliente_edit', { 'id': cliente.id }) }}" class="btn btn-primary float-left">Editar</a>
+        
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Deletar" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        
+{% endblock %}

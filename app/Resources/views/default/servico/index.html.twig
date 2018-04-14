@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listagem de Serviços</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th><a href="?ord=id" {% if ord == 'id' %} class="text-dark" {% endif %} >Id</a></th>
+                <th><a href="?ord=nome" {% if ord == 'nome' %} class="text-dark" {% endif %}>Nome</a></th>
+                <th><a href="?ord=descricao" {% if ord == 'descricao' %} class="text-dark" {% endif %}>Descrição</a></th>
+                <th><a href="?ord=preco" {% if ord == 'preco' %} class="text-dark" {% endif %}>Preço</a></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for servico in servicos %}
+            <tr>
+                <td><a href="{{ path('servico_show', { 'id': servico.id }) }}">{{ servico.id }}</a></td>
+                <td>{{ servico.nome }}</td>
+                <td>{{ servico.descricao }}</td>
+                <td>{{ servico.preco }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('servico_show', { 'id': servico.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('servico_edit', { 'id': servico.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('servico_new') }}">Create a new servico</a>
+        </li>
+    </ul>
+{% endblock %}

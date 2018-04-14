@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lista de Produtos</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th><center>Quantidade</center></th>
+                <th>Foto</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produto in produtos %}
+            <tr>
+                <td><a href="{{ path('produto_show', { 'id': produto.id }) }}">{{ produto.id }}</a></td>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.descricao }}</td>
+                <td>R$ {{ produto.preco }}</td>
+                <td><center>{{ produto.quantidade }}</center></td>
+                <td>
+                
+                   <img src="{{asset("/img-produtos/" ~ produto.imagem) | imagine_filter('listagem_produtos') }}" />
+                
+                </td>
+                <td>
+                   
+                 <a href="{{ path('produto_show', { 'id': produto.id }) }}" class="btn btn-secondary">Mostrar</a>
+                     
+                 <a href="{{ path('produto_edit', { 'id': produto.id }) }}" class="btn btn-secondary">Editar</a>
+                  
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+            <a href="{{ path('produto_new') }}" class="btn btn-primary">Criar Novo Produto</a>
+   
+{% endblock %}

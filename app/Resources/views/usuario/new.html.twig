@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block body %}
+    <h1>Novo Usuario</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.nome, {'label': 'Nome'}) }}
+        {{ form_row(form.username, {'label': 'Username'}) }}
+        {{ form_row(form.email, {'label': 'Email'} ) }}
+        {{ form_row(form.plainPassword.first, {'label':'Senha'}) }}
+         {{ form_row(form.plainPassword.second, {'label':'Confirmar Senha'}) }}
+        
+        <input type="submit" value="Novo Criar" class="btn btn-primary float-right" />
+    {{ form_end(form) }}
+
+    
+        
+            <a href="{{ path('usuario_index') }}" class="btn btn-dark">Listar Usuarios</a>
+    
+    
+{% endblock %}
